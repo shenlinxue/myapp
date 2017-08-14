@@ -1,0 +1,35 @@
+<h1><%= params[:id] ? "编辑地址" : "新建地址" %></h1>
+<% unless @address.errors.blank? %>
+  <div class="alert alert-danger">
+  <ul> 
+    <% @address.errors.messages.values.flatten.each do |n| %>
+      <li><%= n %></li>    
+    <% end %>
+  </ul>
+  </div>
+<% end %>
+<%= form_for @address, url: (params[:id] ? address_path(params[:id]) : addresses_path), method: params[:id] ? :put : :post do |t| %>
+  <div class="form-group">
+    <%= t.label :address, "收货地址" %>
+    <%= t.text_field :address, class: "form-control" %>
+
+    <%= render "address_select" %>
+  </div>
+  <div class="form-group">
+    <%= t.label :name, "收货人姓名" %>
+    <%= t.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= t.label :cellphone, "收货人电话" %>
+    <%= t.text_field :cellphone, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    
+  	<%= t.label(:default_address, "默认地址") %>
+    <%= t.check_box(:default_address) %>
+  </div>
+
+  
+  <button type="submit" class="btn btn-default">Submit</button>
+
+  <% end %>

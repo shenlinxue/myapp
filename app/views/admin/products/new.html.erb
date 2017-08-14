@@ -1,0 +1,47 @@
+
+<% @product.errors.messages.each do |m| %>
+  <%= m %>
+<% end %>
+<%= form_for @product, url: (admin_products_path), method: :post do |t| %>
+  <div class="form-group">
+    <%= t.label :name, "商品名称" %>
+    <%= t.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= t.label :category, "分类" %>
+    <select name="[product][category_id]">
+      <% @cates.each do |c| %>
+         <option disabled="disabled"><%= c.title %></option>
+           <% c.children.each do |v| %>
+              <option value=<%= v.id %>><%= "----"+v.title %></option>
+            <% end %>
+      <% end %>
+    </select>
+  </div>
+
+
+   <div class="form-group">
+   <%= t.label :product, "上传图片" %>
+  <%= t.file_field :product_cover %>
+  </div>
+  <div class="form-group">
+    <%= t.label :status, "上下架状态" %>
+    <%= t.select(:status, [['上架', "On"], ['下架', 'Off']]) %>
+  </div>
+  <div class="form-group">
+    <%= t.label :amount, "商品数量" %>
+    <%= t.text_field :amount, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= t.label :price, "商品价格" %>
+    <%= t.text_field :price, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= t.label :description, "商品描述" %>
+    <%= t.text_field :description, class: "form-control" %>
+  </div>
+
+  
+  <button type="submit" class="btn btn-default">Submit</button>
+
+  <% end %>

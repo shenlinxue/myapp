@@ -1,0 +1,23 @@
+<div>
+<h1><%= params[:id] ? "类别:#{@cate.title}" : "一级分类" %></h1>
+<%= link_to '新建分类', new_admin_category_path %>
+<table class="table">
+<tr>
+	<th>ID</th>
+	<th>title</th>
+	<th>weight</th>
+	<th></th>
+	</tr>
+	<% @categories.each do |t| %>
+	<tr>
+		<td><%= t.id %></td>
+		<td><%= t.title %>(<%= t.children.count %>)</td>
+		<td><%= t.weight %></td>
+		<td><%= params[:id] ? "" : (link_to "查看子分类", sub_index_admin_category_path(t), method: :get) %>
+			<%= link_to '删除分类', admin_category_path(t), method: :delete %>
+			<%= link_to "编辑分类", '#' %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+</div>

@@ -1,0 +1,40 @@
+
+<%= form_tag orders_path, method: :post do  %>
+<%= render "addresses/index" %>
+<hr>
+<h3>支付方式</h3>
+<%= radio_button_tag "", "" %>
+<%= image_tag "支付宝" %>
+<h3>商品明细</h3>
+<table class="table">
+<tr>
+	<th>ID</th>
+	<th>name</th>
+	<th>price</th>
+	<th>amount</th>
+	<th>合计</th>
+	</tr>
+	<% @shopping_carts.each do |t| %>
+	<tr>
+		<td><%= t.product.id %></td>
+		<td><%= image_tag t.product.product_cover.url(:thumb) %><%= t.product.name %></td>
+		<td><%= t.product.price %></td>
+		<td><%= t.amount %></td>
+		<td><%= t.product.price * t.amount %><br>
+		
+		</td>
+	</tr>
+	<% end %>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td>
+        <strong>总价: ¥<%= @shopping_carts.sum { |cart| cart.amount * cart.product.price } %></strong></td>
+	</tr>
+</table>
+<div class="pull-right">
+<%= submit_tag("提交订单", class: "btn btn-danger") %>
+</div>
+<% end %>

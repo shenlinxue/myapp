@@ -1,0 +1,33 @@
+<h3>地址列表</h3>
+<div>
+<%= link_to '新建地址', new_address_path,class: "btn btn-danger" %>
+<table class="table">
+<tr>
+	<th>选择地址</th>
+	<th>ID</th>
+	<th>address</th>
+	<th>name</th>
+	<th>cellphone</th>
+	
+	<th></th>
+	</tr>
+	<% @addresses.each do |t| %>
+	<tr>
+		<td>
+			<%= radio_button_tag(:address_id, t.id, t.default_address ? 'checked="checked"' : nil ) %>
+		</td>
+		<td><%= t.id %></td>
+		<td><%= t.address %></td>
+		<td><%= t.name %></td>
+		<td><%= t.cellphone %></td>
+		
+		<td><%= t.default_address ? "当前为默认" : (link_to "设为默认", set_to_default_address_path(t), method: :post) %>
+		<%= link_to "编辑", edit_address_path(t) %>
+			<%= link_to '删除', address_path(t), method: :delete, data: { confirm: "确定删除吗?"}  %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+</div>
+
+

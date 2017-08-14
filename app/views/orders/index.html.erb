@@ -1,0 +1,22 @@
+<h1>我的订单</h1>
+<% @orders.each do |i| %>
+<table class="table">
+<tr>订单编号:<%= i.id %>
+	订单状态:<%= i.status %>
+<br>收货地址:<%= i.address.address + ", " + i.address.name + ", "+ i.address.cellphone %></tr>
+
+	<% i.order_items.each do |t| %>
+	<tr>
+		<td></td>
+		<td><%= t.product.id %></td>
+		<td><%= image_tag t.product.product_cover.url(:thumb) %><%= t.product.name %></td>
+		<td><%= t.price %></td>
+		<td><%= t.amount %></td>
+		<td><%= t.product.price * t.amount %></td>
+	</tr>
+	<% end %>
+	<tr>
+        <strong>总价: ¥<%= i.total_money %></strong>
+	</tr>
+</table>
+<% end %>

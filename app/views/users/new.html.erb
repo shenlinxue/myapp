@@ -1,0 +1,10 @@
+<h1>Users#new</h1>
+<% @user.errors.messages.each do |m| %>
+	<%= m %>
+<% end %>
+<%= form_for @user, url: users_path, method: :post do |t| %>
+	邮箱:<%= t.text_field :email %>
+	密码:<%= t.password_field :password %>
+	密码确认:<%= t.password_field :password_confirmation %>
+	<%= submit_tag "提交" %>
+<% end %>

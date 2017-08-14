@@ -1,0 +1,8 @@
+<h1>管理员登录</h1>
+
+<%= form_tag   admin_sessions_path, method: :post do |t| %>
+	邮箱:<%= text_field_tag :email %>
+	密码:<%= password_field_tag :password %>
+
+	<%= submit_tag "提交" %>
+<% end %>

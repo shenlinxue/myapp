@@ -1,0 +1,29 @@
+<div>
+<%= link_to '新建商品', new_admin_product_path %>
+<table class="table">
+<tr>
+	<th>类别</th>
+	<th>ID</th>
+	<th>name</th>
+	<th>status</th>
+	<th>price</th>
+	<th>amount</th>
+	<th></th>
+	</tr>
+	<% @products.each do |t| %>
+	<tr>
+		<td><%= t.category.title %></td>	
+		<td><%= t.id %></td>
+		<td><%= image_tag t.product_cover.url(:thumb) %><%= t.name %></td>
+		<td><%= t.status %></td>
+		<td><%= t.price %></td>
+		<td><%= t.amount %></td>
+		<td><%= link_to "编辑", edit_admin_product_path(t) %>
+			<%= link_to '删除', admin_product_path(t), method: :delete, data: { confirm: "确定删除吗?"}  %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+</div>
+
+
