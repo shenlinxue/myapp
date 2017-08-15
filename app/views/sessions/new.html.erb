@@ -1,8 +1,15 @@
-<h1>Sessions#new</h1>
+<h1>用户登录</h1>
 
 <%= form_tag   sessions_path, method: :post do |t| %>
-	邮箱:<%= text_field_tag :email %>
-	密码:<%= password_field_tag :password %>
+
+	<div class="form-group">
+    <%= label_tag :email, "邮箱" %>
+    <%= text_field_tag :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :password, "密码" %>
+    <%= password_field_tag :password, class: "form-control" %>
+  </div>
 
 	<%= submit_tag "提交" %>
 <% end %>
