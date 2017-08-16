@@ -39,8 +39,8 @@ gem 'sorcery'
 gem 'bootstrap-sass'
 gem 'paperclip'
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem 'ancestry'
-gem 'passenger'
 gem 'mysql2'
 
 
