@@ -6,19 +6,28 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
    
   </head>
 
   <body>
+  <%= render "layouts/menv" %>  
     <div class="container">
-      <%= render "layouts/menv" %>  
+      
       <% unless flash[:notice].blank? %>
         <div class="alert alert-info">
           <%= flash[:notice] %>
         </div>
       <% end %>
       <%= yield %>
+
     </div> <!-- /container -->
+    
+      <footer class="footer">
+        <div class="container">
+          <p class="text-muted">练习作品之我的店MYAPP@LynnShen</p>
+        </div>
+      </footer>
 
      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
