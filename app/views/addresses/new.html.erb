@@ -1,9 +1,9 @@
 <h1><%= params[:id] ? "编辑地址" : "新建地址" %></h1>
 <% unless @address.errors.blank? %>
   <div class="alert alert-danger">
-  <ul> 
+  <ul>
     <% @address.errors.messages.values.flatten.each do |n| %>
-      <li><%= n %></li>    
+      <li><%= n %></li>
     <% end %>
   </ul>
   </div>
@@ -24,12 +24,12 @@
     <%= t.text_field :cellphone, class: "form-control" %>
   </div>
   <div class="form-group">
-    
+
   	<%= t.label(:default_address, "默认地址") %>
     <%= t.check_box(:default_address) %>
   </div>
 
-  
+
   <button type="submit" class="btn btn-default">Submit</button>
 
   <% end %>

@@ -17,7 +17,7 @@
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
               <span class="sr-only">Toggle navigation</span>
-             
+
             </button>
             <a class="navbar-brand" href="#">管理后台</a>
           </div>
@@ -26,25 +26,30 @@
               <li class="active"><%= link_to '商品管理', admin_root_path %></li>
               <li><%= link_to "分类管理", admin_categories_path %></li>
               <li><a href="#">Contact</a></li>
-       
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <% if logged_in? %>
-                <li><%= current_user.email %></li>
-                <li><%= link_to '退出', sessions_destroy_path, method: :delete %></li>
+                <li><a href="#"><%= current_user.email %></a></li>
+
+                <li><%= link_to '退出', admin_sessions_path, method: :delete %></li>
               <% else %>
-                <li><%= link_to '登录', new_session_path %></li>
-                 
+                <li><%= link_to '登录', new_admin_session_path %></li>
+
               <% end %>
 
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
+    <% if !flash[:notice].blank? %>
+      <div class="alert alert-danger">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
 
 
-   
 
 
     <%= yield %>
