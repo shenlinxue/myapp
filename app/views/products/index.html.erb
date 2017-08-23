@@ -17,6 +17,7 @@
 	</tr>
 	<% end %>
 </table>
-
-<%= will_paginate @blogs, renderer: BootstrapPagination::Rails %>
+	<div class="page">
+		<%= will_paginate @blogs, renderer: BootstrapPagination::Rails %>
+	</div>
 </div>
