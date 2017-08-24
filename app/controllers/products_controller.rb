@@ -6,7 +6,8 @@ class ProductsController < ApplicationController
   end
 
   def search
-  	@products = Product.page(params[:page] || 1).per_page(params[:per_page] || 5).where("name like ?", "%#{params[:name]}%")
+
+  	@products = Product.page(params[:page] || 1).per_page(params[:per_page] || 6).where("name like ?", "%#{params[:name]}%")
   	render :index
   end
 end
