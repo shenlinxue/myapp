@@ -6,16 +6,20 @@ class Admin::SessionsController < Admin::AdminController
 
   def create
   	if login(params[:email], params[:password]) && current_user.is_admin?
+      flash[:notice] = "登录成功!"
 
   		redirect_to admin_root_path
   	else
       logout
+      flash[:notice] = "登录失败!"
   		redirect_to new_admin_session_path
   	end
   end
 
   def destroy
   	logout
+    flash[:notice] = "退出登录!"
+
   	redirect_to admin_root_path
   end
 end
