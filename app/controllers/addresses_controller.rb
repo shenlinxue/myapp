@@ -31,7 +31,7 @@ class AddressesController < ApplicationController
     @address.save
     flash[:notice] = "默认地址已更改"
     
-    redirect_to action: :index
+    redirect_to :back
   end
 
   def remove_default
