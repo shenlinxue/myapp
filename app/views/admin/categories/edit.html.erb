@@ -1,2 +1,38 @@
-<h1>Admin::Categories#edit</h1>
-<p>Find me in app/views/admin/categories/edit.html.erb</p>
+<h1>编辑分类</h1>
+<% @category.errors.messages.values.flatten.each do |n| %>
+  <%= n %>
+<% end %>
+<%= form_for @category, url: admin_category_path(@category), method: :put do |t| %>
+  <div class="form-group">
+    <%= t.label :ancestry, "一级分类" %>
+
+	<select name="category[ancestry]">
+  <option value="">新建一级分类</option>
+		<% @cate_roots.each do |c| %>
+    <% if @category.root? %>
+    <option value=<%= c.id %> ><%= c.title %></option>
+    <% else %>
+		<option value=<%= c.id %>  <%= (c.id == @category.parent.id) ? "selected" : "" %>><%= c.title %></option>
+    <% end %>
+		<% end %>
+		</select>
+
+  </div>
+
+
+  <div class="form-group">
+    <%= t.label :title, "分类名称" %>
+    <%= t.text_field :title, class: "form-control" %>
+  </div>
+
+
+  <div class="form-group">
+    <%= t.label :weight, "权重" %>
+    <%= t.text_field :weight, class: "form-control" %>
+  </div>
+
+
+
+  <button type="submit" class="btn btn-default">Submit</button>
+
+  <% end %>

@@ -1,6 +1,6 @@
 <div>
-<h1><%= params[:id] ? "类别:#{@cate.title}" : "一级分类" %></h1>
-<%= link_to '新建分类', new_admin_category_path %>
+<h1><%= params[:cate_root_id] ? "类别:#{Category.find(params[:cate_root_id]).title}" : "一级分类" %></h1>
+<%= link_to '新建分类', params[:cate_root_id] ? new_admin_category_path(cate_root_id: params[:cate_root_id]) : new_admin_category_path %>
 <table class="table">
 <tr>
 	<th>ID</th>
@@ -11,11 +11,11 @@
 	<% @categories.each do |t| %>
 	<tr>
 		<td><%= t.id %></td>
-		<td><%= t.title %>(<%= t.children.count %>)</td>
+		<td><%= t.title %>(<%= t.root? ? (t.children.count.to_s + "个子分类") : (t.products.count.to_s + "个商品") %>)</td>
 		<td><%= t.weight %></td>
-		<td><%= params[:id] ? "" : (link_to "查看子分类", sub_index_admin_category_path(t), method: :get) %>
-			<%= link_to '删除分类', admin_category_path(t), method: :delete %>
-			<%= link_to "编辑分类", '#' %>
+		<td><%= params[:cate_root_id] ? (link_to "查看商品", admin_products_path) : (link_to "查看子分类", admin_categories_path(cate_root_id: t.id), method: :get) %>
+			<%= link_to '删除分类', admin_category_path(t), method: :delete, data: { confirm: "确定删除吗?"}  %>
+			<%= link_to "编辑分类", edit_admin_category_path(t) %>
 		</td>
 	</tr>
 	<% end %>

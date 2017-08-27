@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
 
 
-  
+
+  resources :categories, only: [:show]
+
   resources :payments
 
-  resources :orders do 
-    
+  resources :orders do
+
   end
 
-  resources :addresses do 
-    member do 
+  resources :addresses do
+    member do
       post :set_to_default
     end
   end
@@ -19,17 +21,13 @@ Rails.application.routes.draw do
     root "products#index"
     resources :sessions, only: [:new, :create, :destroy]
     resources :products
-    resources :categories do 
-      member do 
-        get 'sub_index'
-      end
-    end
+    resources :categories
   end
 
-  
+
 	root "products#index"
-  resources :products do 
-    collection do 
+  resources :products do
+    collection do
       get :search
     end
   end

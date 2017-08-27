@@ -1,14 +1,16 @@
-
-<% @category.errors.messages.each do |m| %>
-  <%= m %>
+<h1>新建分类</h1>
+<div style="color: red">
+<% @category.errors.messages.values.flatten.each do |n| %>
+  <%= n %>
 <% end %>
+</div>
 <%= form_for @category, url: admin_categories_path, method: :post do |t| %>
   <div class="form-group">
-    <%= t.label :ancestry, "一级分类" %>
-  
-	<select name="ancestry">
-		<% @cates.each do |c| %>
-		<option value=<%= c.id %>><%= c.title %></option>
+    <%= t.label :ancestry, "分类" %>
+	<select name="category[ancestry]">
+  <option value="">新建一级分类</option>
+		<% @cate_roots.each do |c| %>
+		<option value=<%= c.id %> <%= (c == @cate_root) ? "selected" : "" %>><%= c.title -%></option>
 		<% end %>
 		</select>
 
@@ -27,7 +29,7 @@
   </div>
 
 
-  
+
   <button type="submit" class="btn btn-default">Submit</button>
 
   <% end %>

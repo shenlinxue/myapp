@@ -5,4 +5,13 @@ class Address < ApplicationRecord
   validates :name, presence: { message: "姓名不能为空" }
   validates :cellphone, presence: { message: "手机号码不能为空"}
   validates :cellphone, format: { with: /\A1[3,5,7,8][0-9]{9}\z/, message: "手机号码格式不正确"}, unless: proc { |x| x.cellphone.blank?}
+
+  # before_create :set_address
+
+  # private
+  # def set_address
+  # 	self.address =
+  # end
+
+
 end

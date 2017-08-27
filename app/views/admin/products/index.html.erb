@@ -12,7 +12,7 @@
 	</tr>
 	<% @products.each do |t| %>
 	<tr>
-		<td><%= t.category.title %></td>	
+		<td><%= t.category.title %></td>
 		<td><%= t.id %></td>
 		<td><%= image_tag t.product_cover.url(:thumb) %><%= t.name %></td>
 		<td><%= t.status %></td>
@@ -24,6 +24,7 @@
 	</tr>
 	<% end %>
 </table>
+<%= will_paginate @products %>
 </div>
 
 

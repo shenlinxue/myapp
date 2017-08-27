@@ -1,31 +1,35 @@
 class Admin::CategoriesController < Admin::AdminController
 
-  
+  before_action :find_cate_roots, only: [:index, :new, :edit]
+  before_action :find_category, only: [:edit, :update, :destroy]
+
   def index
-  
-      @categories =  Category.roots
-   
-  end
-  def sub_index
-    @cate = Category.find(params[:id])
-    @categories = @cate.children
-    render action: :index
+    if params[:cate_root_id]
+      @categories = Category.find(params[:cate_root_id]).children
+    else
+      @categories = @cate_roots
+    end
   end
 
   def new
-    @cates = Category.roots
     @category = Category.new
+    if params[:cate_root_id]
+      @cate_root = Category.find(params[:cate_root_id])
+    end
   end
 
   def create
-    
     @category = Category.new(category_params)
-    @cate = Category.find(params[:ancestry])
-    @category.parent = @cate
     if @category.save
-      redirect_to action: :index
+      flash[:notice] = "新建分类成功！"
+      if @category.root?
+        redirect_to action: :index
+      else
+        redirect_to  sub_index_admin_category_path(@category)
+      end
     else
-      redirect_to action: :new
+      flash[:notice] = "新建分类失败！"
+      render action: :new
     end
   end
 
@@ -33,15 +37,31 @@ class Admin::CategoriesController < Admin::AdminController
   end
 
   def update
+    @category.update(category_params)
+
+    if @category.root?
+      redirect_to action: :index
+    else
+      redirect_to action: :sub_index
+    end
+
   end
 
   def destroy
-    @category = Category.find(params[:id])
     @category.destroy
+    flash[:notice] = "删除分类成功！"
     redirect_to action: :index
   end
 
   private
+  def find_category
+    @category = Category.find(params[:id])
+  end
+  def find_cate_roots
+    @cate_roots =  Category.roots
+
+  end
+
   def category_params
     params.require(:category).permit!
   end

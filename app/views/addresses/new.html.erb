@@ -10,10 +10,10 @@
 <% end %>
 <%= form_for @address, url: (params[:id] ? address_path(params[:id]) : addresses_path), method: params[:id] ? :put : :post do |t| %>
   <div class="form-group">
-    <%= t.label :address, "收货地址" %>
-    <%= t.text_field :address, class: "form-control" %>
+ <%= t.label :address, "收货地址" %>
+      <%= t.text_field :address, class: "form-control" %>
 
-    <%= render "address_select" %>
+<!--     <%= render "address_select" %> -->
   </div>
   <div class="form-group">
     <%= t.label :name, "收货人姓名" %>

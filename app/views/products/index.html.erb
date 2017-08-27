@@ -1,26 +1,19 @@
-<div>
-<table class="table">
-<tr>
-	<th>ID</th>
-	<th>name</th>
-	<th>price</th>
-	<th>amount</th>
-	<th></th>
-	</tr>
-	<% @products.each do |t| %>
-	<tr>
-		<td><%= t.id %></td>
-		<td><%= image_tag t.product_cover.url(:thumb) %><%= t.name %></td>
-		<td><%= t.price %></td>
-		<td><%= t.amount %></td>
-		<td><%= link_to "加入购物车", shopping_carts_path(product_id: t.id), method: :post %></td>
-	</tr>
-	<% end %>
-</table>
-	<div class="page">
-
-
-<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
-
+<div class="row">
+	<div class="col-lg-3">
+		<%= render 'shared/categories' %>
+	</div>
+	<div class="col-lg-9">
+	<ol class="breadcrumb">
+		<% if params[:id] %>
+			<li><%= "Home > #{@sub_category.parent.title} > #{@sub_category.title}" %></li>
+		<% else %>
+			<li class="active">Home</li>
+			<% end %>
+	</ol>
+		<%= render 'shared/products' %>
 	</div>
 </div>
+
+
+
+

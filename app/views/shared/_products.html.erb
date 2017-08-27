@@ -1,0 +1,19 @@
+<div class="row">
+	<% @products.each do |t| %>
+		<div class="col-sm-6 col-md-4">
+			<div class="thumbnail">
+				<%= link_to image_tag(t.product_cover.url(:thumb), alt: t.name), "#" %>
+				<div class="caption">
+					<h4><strong><%= link_to t.name, "#", class: "title" %></strong></h4>
+					<p><strong>￥<%= t.price %></strong><span></span></p>
+					<p><%= link_to "加入购物车", shopping_carts_path(product_id: t.id), method: :post, class: "btn btn-xs btn-danger" %></p>
+				</div>
+			</div>
+		</div>
+
+	<% end %>
+
+	<div class="page">
+		<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+	</div>
+</div>

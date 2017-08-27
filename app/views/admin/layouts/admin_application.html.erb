@@ -35,10 +35,10 @@
                 <li><%= link_to '退出', admin_session_path(current_user), method: :delete %></li>
               <% else %>
                 <li><%= link_to '登录', new_admin_session_path %></li>
-                 
+
 
               <% end %>
-              
+
 
             </ul>
           </div><!--/.nav-collapse -->
@@ -50,11 +50,7 @@
       </div>
     <% end %>
 
-      <% unless flash[:notice].blank? %>
-        <div class="alert alert-danger">
-          <%= flash[:notice] %>
-        </div>
-      <% end -%>         
+
 
 
 
