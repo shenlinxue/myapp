@@ -25,7 +25,7 @@ class Admin::CategoriesController < Admin::AdminController
       if @category.root?
         redirect_to action: :index
       else
-        redirect_to  sub_index_admin_category_path(@category)
+        redirect_to  admin_categories_path(cate_root_id: @category.root.id)
       end
     else
       flash[:notice] = "新建分类失败！"
