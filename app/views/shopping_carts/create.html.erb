@@ -1,11 +1,11 @@
-<div>
-	<div>
-		<div>
-			<div>
-				<h4><i class="fa fa-check-circle-o"></i>加入购物车成功!</h4>
+<div class="modal fade" tabindex="-1" id="shopping_cart_modal">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h4 class="text text-success"><i class="fa fa-check-circle-o"></i>加入购物车成功!</h4>
 				<div>
 					<div>
-						<a href=""><%= image_tag @product.image.url(:cover), class: 'media-object', alt: @product.name %></a>
+						<a href=""><%= image_tag @product.product_cover.url(:thumb), class: 'media-object', alt: @product.name %></a>
 					</div>
 					<div>
 						<h4><%= @product.name %></h4>
@@ -13,9 +13,9 @@
 					</div>
 				</div>
 			</div>
-			<div>
-				<button>继续购物</button>
-				<%= link_to "查看购物车", shopping_cart %>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" date-dismiss="modal">继续购物</button>
+				<%= link_to "查看购物车", shopping_carts_path, class: "btn btn-danger" %>
 			</div>
 		</div>
 	</div>

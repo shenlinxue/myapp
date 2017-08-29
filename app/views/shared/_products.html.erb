@@ -6,14 +6,22 @@
 				<div class="caption">
 					<h4><strong><%= link_to t.name, "#", class: "title" %></strong></h4>
 					<p><strong>￥<%= t.price %></strong><span></span></p>
-					<p><%= link_to "加入购物车", shopping_carts_path(product_id: t.id), method: :post, class: "btn btn-xs btn-danger" %></p>
+					<p><%= link_to("加入购物车",  shopping_carts_path(product_id: t.id),  {method: :post , class: "btn btn-xs btn-danger", 'data-toggle': "modal" , 'data-target': "#shopping_cart_modal"}) %></p>
+
+					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">测试</button>
+					<a href=”javascript: $('#myModal').modal()”>点击我</a>
 				</div>
 			</div>
 		</div>
 
 	<% end %>
 </div>
+
+
+
 	<div class="page">
 		<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
 	</div>
+
+
 

@@ -18,7 +18,7 @@ class ShoppingCartsController < ApplicationController
       amount = @shopping_cart.amount
       @shopping_cart.update( amount: amount+1 )
     end
-  	redirect_to action: :index
+  	render layout: false
   end
 
   def update
