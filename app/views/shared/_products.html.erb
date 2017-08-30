@@ -6,10 +6,10 @@
 				<div class="caption">
 					<h4><strong><%= link_to t.name, "#", class: "title" %></strong></h4>
 					<p><strong>￥<%= t.price %></strong><span></span></p>
-					<p><%= link_to("加入购物车",  shopping_carts_path(product_id: t.id),  {method: :post , class: "btn btn-xs btn-danger", 'data-toggle': "modal" , 'data-target': "#shopping_cart_modal"}) %></p>
+					<!-- <p><%= link_to("加入购物车",  shopping_carts_path(product_id: t.id),  {method: :post , class: "btn btn-xs btn-danger add-to-cart-btn"}) %></p>
+ -->
+					<p><%= link_to("加入购物车",  shopping_carts_path,  { class: "btn btn-xs btn-danger add-to-cart-btn",'data-product-id': t.id}) %></p>
 
-					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">测试</button>
-					<a href=”javascript: $('#myModal').modal()”>点击我</a>
 				</div>
 			</div>
 		</div>
@@ -17,6 +17,35 @@
 	<% end %>
 </div>
 
+
+
+
+<script>
+(function() {
+  // 购物车
+  $('.add-to-cart-btn').on('click', function() {
+  	var $this = $(this);
+        $.ajax({
+      url: '/shopping_carts',
+      method: 'post',
+      data: { product_id: $this.data('product-id') },
+
+      success: function(data) {
+if ($('#shopping_cart_modal').length > 0) {
+          $('#shopping_cart_modal').remove();
+        }
+        $('body').append(data);
+        $('#shopping_cart_modal').modal();
+      },
+
+    })
+
+        return false;
+  })
+
+})()
+
+</script>
 
 
 	<div class="page">

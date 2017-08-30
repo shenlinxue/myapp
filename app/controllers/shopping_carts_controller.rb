@@ -15,8 +15,7 @@ class ShoppingCartsController < ApplicationController
       @shopping_cart.save
     else
       @shopping_cart = ShoppingCart.find_by(product_id: params[:product_id])
-      amount = @shopping_cart.amount
-      @shopping_cart.update( amount: amount+1 )
+      @shopping_cart.update( amount: @shopping_cart.amount+1 )
     end
   	render layout: false
   end
