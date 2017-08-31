@@ -21,7 +21,7 @@
 
 
 <script>
-(function() {
+
   // 购物车
   $('.add-to-cart-btn').on('click', function() {
   	var $this = $(this);
@@ -31,7 +31,7 @@
       data: { product_id: $this.data('product-id') },
 
       success: function(data) {
-if ($('#shopping_cart_modal').length > 0) {
+				if ($('#shopping_cart_modal').length > 0) {
           $('#shopping_cart_modal').remove();
         }
         $('body').append(data);
@@ -43,7 +43,7 @@ if ($('#shopping_cart_modal').length > 0) {
         return false;
   })
 
-})()
+
 
 </script>
 
